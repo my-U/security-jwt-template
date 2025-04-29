@@ -1,0 +1,115 @@
+# application.example.yml
+# ⚠ 이 파일은 예시입니다.
+# 'application.yml'로 이름을 바꾸고
+# 프로젝트에 맞게 값을 입력하여 사용하세요.
+
+# 어플리케이션 이름 설정
+spring:
+  application:
+    name: # 🔧 프로젝트에 맞게 반드시 수정하세요.
+
+  # 파일 업로드 관련 설정
+  servlet:
+    multipart:
+      max-file-size: 10MB  # 최대 파일 크기
+      max-request-size: 30MB  # 최대 요청 크기
+
+  jpa:
+    open-in-view: false  # "Open EntityManager in View" 설정
+    show-sql: true  # JPA SQL 출력 여부
+    hibernate:
+      ddl-auto: none  # 🔧 프로젝트에 맞게 반드시 수정하세요.
+      format_sql: true  # Hibernate SQL 포맷 설정 (가독성을 위해)
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl  # Hibernate 물리적 네이밍 전략 설정
+
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true  # Hidden HTTP Methods 사용 여부 (HTML Form에서 PUT, DELETE 등을 사용하기 위함)
+    static-path-pattern: "/static/**"  # 정적 자원 경로 설정
+
+  thymeleaf:
+    cache: false  # Thymeleaf 템플릿 캐시 비활성화 (개발 중 캐시 사용을 피하기 위함)
+
+  h2:
+    console:
+      enabled: false # H2 콘솔 활성화 🔧 프로젝트에 맞게 반드시 수정하세요.
+
+  messages:
+    basename: classpath:messages  # 메시지 리소스 번들 설정
+
+  config:
+    import: optional:classpath:application-secret.yml # secret 프로파일을 설정에 병합
+
+  profiles:
+    #active: dev  # 🔧 프로젝트에 맞게 반드시 수정하세요.
+
+# Hibernate SQL 로그 출력
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+        web.servlet.DispatcherServlet: DEBUG
+        security: DEBUG
+        beans: DEBUG
+        jdbc.core.JdbcTemplate: DEBUG
+        transaction: DEBUG
+      hibernate:
+        SQL: DEBUG
+        type.descriptor.sql.BasicBinder: TRACE
+      apache:
+        coyote.http11: WARN
+        tomcat.util.net: WARN
+
+# 운영 환경에서는 로그를 줄여서 설정
+# spring:
+#   profiles:
+#     active: prod
+#
+# logging:
+#   level:
+#     org:
+#       springframework:
+#         web: INFO
+#         web.servlet.DispatcherServlet: INFO
+#         security: WARN
+#         beans: INFO
+#         jdbc.core.JdbcTemplate: WARN
+#         transaction: WARN
+#       hibernate:
+#         SQL: WARN
+#       apache:
+#         coyote.http11: ERROR
+#         tomcat.util.net: ERROR
+
+
+# Actuator 설정
+management:
+  metrics:
+    profiler:
+      enabled: true  # 메트릭 프로파일러 활성화
+  endpoints:
+    web:
+      exposure:
+        include: "*"  # Actuator 엔드포인트 노출 설정
+      base-path: "/actuator/profiler"  # Actuator 엔드포인트 기본 경로 설정
+
+# Tomcat 상대적 리다이렉트 사용
+server:
+  tomcat:
+    use-relative-redirects: true
+
+  # Whitelabel 에러 페이지 비활성화
+  error:
+    whitelabel:
+      enabled: false
+
+  servlet:
+    session:
+      cookie:
+        http-only: false  # HTTP-Only 쿠키 설정
+
+mediatype:
+  json: "application/json;charset=UTF-8"
