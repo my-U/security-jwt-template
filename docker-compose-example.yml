@@ -1,0 +1,43 @@
+services: # 생성되는 순서 중요
+
+  # MySQL 서비스
+  mysql:
+    image: mysql:8.0
+    container_name: short-url-mysql
+    env_file:
+      - .env.common
+      - .env.prod
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - "3306:3306"
+    # volumes:
+    #   - ./mysql-data:/var/lib/mysql
+
+  # Redis 서비스
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+  # Spring Boot 애플리케이션
+  short-url:
+    image:  # 🔧 프로젝트에 맞게 값을 설정 해주세요.
+    container_name: # 🔧 프로젝트에 맞게 값을 설정 해주세요.
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+      - redis
+    env_file:
+      - .env.common
+      - .env.prod
+    environment:
+      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
+      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+      SPRING_REDIS_HOST: ${SPRING_REDIS_HOST}
+      SPRING_REDIS_PORT: ${SPRING_REDIS_PORT}
