@@ -5,7 +5,7 @@
 
 spring:
   application:
-    name:  # 🔧 어플리케이션 이름 설정 (필수 수정)
+    name: app # 🔧 어플리케이션 이름 설정 (필수 수정)
 
   servlet:
     multipart:
@@ -47,5 +47,3 @@ server:
     whitelabel:
       enabled: false  # 기본 Whitelabel 에러 페이지 비활성화
 
-mediatype:
-  json: "application/json;charset=UTF-8"  # JSON 기본 미디어 타입 설정
