@@ -1,7 +1,7 @@
-package com.example.NPKI.security;
+package com.example.template.auth;
 
-import com.example.NPKI.domain.Member;
-import com.example.NPKI.repository.MemberRepository;
+import com.example.template.domain.Member;
+import com.example.template.repository.MemberRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -21,6 +21,6 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String accountId) throws UsernameNotFoundException {
         Member member = memberRepository.findByAccountId(accountId)
                 .orElseThrow(() -> new UsernameNotFoundException("Member not found"));
-        return new CustomUserDetails(member, Collections.emptyList());
+        return new com.example.NPKI.security.CustomUserDetails(member, Collections.emptyList());
     }
 }

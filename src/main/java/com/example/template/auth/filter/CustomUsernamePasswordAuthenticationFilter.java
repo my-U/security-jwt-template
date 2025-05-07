@@ -1,4 +1,4 @@
-package com.example.NPKI.security.filter;
+package com.example.template.auth.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;

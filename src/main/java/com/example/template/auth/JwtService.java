@@ -1,4 +1,4 @@
-package com.example.NPKI.security;
+package com.example.template.auth;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.exceptions.JWTVerificationException;

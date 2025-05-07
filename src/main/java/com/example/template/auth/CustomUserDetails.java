@@ -1,6 +1,6 @@
-package com.example.NPKI.security;
+package com.example.template.auth;
 
-import com.example.NPKI.domain.Member;
+import com.example.template.domain.Member;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 

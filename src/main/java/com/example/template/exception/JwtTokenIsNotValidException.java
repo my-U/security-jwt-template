@@ -1,4 +1,4 @@
-package com.example.NPKI.exception;
+package com.example.template.exception;
 
 public class JwtTokenIsNotValidException extends RuntimeException {
     public JwtTokenIsNotValidException(String message) {

@@ -1,4 +1,4 @@
-package com.example.NPKI.util.enums;
+package com.example.template.util.enums;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

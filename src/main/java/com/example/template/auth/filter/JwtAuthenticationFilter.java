@@ -1,4 +1,4 @@
-package com.example.NPKI.security.filter;
+package com.example.template.auth.filter;
 
 import com.example.NPKI.exception.UnauthorizedException;
 import com.example.NPKI.security.CustomUserDetailsService;

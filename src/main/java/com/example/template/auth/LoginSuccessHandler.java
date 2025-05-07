@@ -1,12 +1,12 @@
-package com.example.NPKI.security;
+package com.example.template.auth;
 
-import com.example.NPKI.domain.Member;
-import com.example.NPKI.dto.response.LoginSuccessMemberDto;
-import com.example.NPKI.dto.response.LoginSuccessResponse;
-import com.example.NPKI.dto.response.TokenResponse;
-import com.example.NPKI.repository.MemberRepository;
-import com.example.NPKI.util.enums.SuccessCode;
-import com.example.NPKI.util.enums.SuccessResponse;
+import com.example.template.domain.Member;
+import com.example.template.dto.response.LoginSuccessMemberDto;
+import com.example.template.dto.response.LoginSuccessResponse;
+import com.example.template.dto.response.TokenResponse;
+import com.example.template.repository.MemberRepository;
+import com.example.template.util.enums.SuccessCode;
+import com.example.template.util.enums.SuccessResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -23,7 +23,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
-    private final JwtService jwtService;
+    private final com.example.NPKI.security.JwtService jwtService;
     private final ObjectMapper objectMapper;
     private final MemberRepository memberRepository;
 

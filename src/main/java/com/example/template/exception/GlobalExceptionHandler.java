@@ -1,7 +1,7 @@
-package com.example.NPKI.exception;
+package com.example.template.exception;
 
-import com.example.NPKI.util.ResponseUtil;
-import com.example.NPKI.util.enums.ErrorResponse;
+import com.example.template.util.ResponseUtil;
+import com.example.template.util.enums.ErrorResponse;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import jakarta.persistence.EntityExistsException;
@@ -29,7 +29,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler({
             AccessDeniedException.class,
             AuthenticationException.class,
-            UnauthorizedException.class,
+            com.example.NPKI.exception.UnauthorizedException.class,
             IllegalArgumentException.class,
             IllegalStateException.class,
             NoSuchElementException.class,
@@ -46,11 +46,11 @@ public class GlobalExceptionHandler {
             DuplicateKeyException.class,
             NoSuchElementException.class,
             MethodArgumentNotValidException.class,
-            MissingRequestParameterException.class,
-            JwtTokenExpiredException.class,
-            JwtTokenIsNotValidException.class,
-            InvalidPasswordException.class,
-            NoSuchUserException.class
+            com.example.NPKI.exception.MissingRequestParameterException.class,
+            com.example.NPKI.exception.JwtTokenExpiredException.class,
+            com.example.NPKI.exception.JwtTokenIsNotValidException.class,
+            com.example.NPKI.exception.InvalidPasswordException.class,
+            com.example.NPKI.exception.NoSuchUserException.class
     })
     protected ResponseEntity<ErrorResponse> handleSpecificExceptions(Exception ex) {
         log.error("Exception caught: {}", ex.getClass().getSimpleName(), ex);

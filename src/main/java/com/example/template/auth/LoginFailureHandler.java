@@ -1,7 +1,7 @@
-package com.example.NPKI.security;
+package com.example.template.auth;
 
-import com.example.NPKI.util.ResponseUtil;
-import com.example.NPKI.util.enums.ErrorCode;
+import com.example.template.util.ResponseUtil;
+import com.example.template.util.enums.ErrorCode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

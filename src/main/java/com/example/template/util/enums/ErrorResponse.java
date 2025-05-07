@@ -1,6 +1,6 @@
-package com.example.NPKI.util.enums;
+package com.example.template.util.enums;
 
-import com.example.NPKI.util.ResponseUtil;
+import com.example.template.util.ResponseUtil;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;

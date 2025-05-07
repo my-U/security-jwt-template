@@ -1,13 +1,13 @@
-package com.example.NPKI.config;
+package com.example.template.config;
 
 
-import com.example.NPKI.repository.MemberRepository;
-import com.example.NPKI.security.CustomUserDetailsService;
-import com.example.NPKI.security.JwtService;
-import com.example.NPKI.security.LoginFailureHandler;
-import com.example.NPKI.security.LoginSuccessHandler;
-import com.example.NPKI.security.filter.CustomUsernamePasswordAuthenticationFilter;
-import com.example.NPKI.security.filter.JwtAuthenticationFilter;
+import com.example.template.repository.MemberRepository;
+import com.example.template.auth.CustomUserDetailsService;
+import com.example.template.auth.JwtService;
+import com.example.template.auth.LoginFailureHandler;
+import com.example.template.auth.LoginSuccessHandler;
+import com.example.template.auth.filter.CustomUsernamePasswordAuthenticationFilter;
+import com.example.template.auth.filter.JwtAuthenticationFilter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
