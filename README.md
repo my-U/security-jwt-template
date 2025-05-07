@@ -76,6 +76,10 @@ cat .env.common .env.dev > .env
 | `SERVER_SSH_KEY` | 배포 서버에 접속할 SSH 개인 키 (OpenSSH 포맷) |
 | `SSH_PORT` | SSH 접속 포트 (기본값: 22) |
 
+```bash
+# 예시: .env.common 파일을 base64로 인코딩한 문자열 출력
+base64 .env.common > env_common.b64
+```
 
 ---
 

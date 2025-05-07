@@ -9,9 +9,6 @@ services: # 생성되는 순서 중요
   mysql:
     image: mysql:8.0
     container_name: mysql-container # 🔧 프로젝트에 맞게 값을 설정 해주세요.
-    env_file:
-      - .env.common
-      - .env.dev
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${DATABASE}
@@ -26,9 +23,6 @@ services: # 생성되는 순서 중요
   postgres:
     image: postgres:15
     container_name: postgresql-container # 🔧 프로젝트에 맞게 값을 설정 해주세요.
-    env_file:
-      - .env.common
-      - .env.dev
     environment:
       POSTGRES_DB: ${DATABASE}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
