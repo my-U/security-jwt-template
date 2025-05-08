@@ -1,9 +1,9 @@
 package com.example.template.auth;
 
-import com.example.template.domain.Member;
-import com.example.template.dto.response.LoginSuccessMemberDto;
-import com.example.template.dto.response.LoginSuccessResponse;
-import com.example.template.dto.response.TokenResponse;
+import com.example.template.domain.entity.Member;
+import com.example.template.auth.dto.response.LoginSuccessMemberDto;
+import com.example.template.auth.dto.response.LoginSuccessDto;
+import com.example.template.auth.dto.response.TokenResponseDto;
 import com.example.template.repository.MemberRepository;
 import com.example.template.util.enums.SuccessCode;
 import com.example.template.util.enums.SuccessResponse;
@@ -30,7 +30,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     @Value("${jwt.TOKEN_PREFIX}")
     private String TOKEN_PREFIX;
 
-    @Value("${mediatype.json}")
+    @Value("${media-type.json}")
     private String mediaTypeJson;
 
     @Override
@@ -42,7 +42,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         // JWT 생성
         String accessToken = jwtService.createAccessToken(accountId);
 
-        TokenResponse tokenResponse = new TokenResponse(accessToken, TOKEN_PREFIX);
+        TokenResponseDto tokenResponseDto = new TokenResponseDto(accessToken, TOKEN_PREFIX);
 
         Member member = memberRepository.findByAccountId(accountId)
                 .orElseThrow(() -> new UsernameNotFoundException("Member not found"));
@@ -61,7 +61,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         // JSON 응답 반환
         response.getWriter().write(
                 objectMapper.writeValueAsString(
-                        new SuccessResponse(SuccessCode.LOGIN_SUCCESS, new LoginSuccessResponse(tokenResponse, loginSuccessMemberDto))
+                        new SuccessResponse(SuccessCode.LOGIN_SUCCESS, new LoginSuccessDto(tokenResponseDto, loginSuccessMemberDto))
                 )
         );
     }

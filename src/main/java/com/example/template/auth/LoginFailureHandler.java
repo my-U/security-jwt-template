@@ -19,7 +19,7 @@ import java.io.IOException;
 public class LoginFailureHandler extends SimpleUrlAuthenticationFailureHandler {
     private final ObjectMapper objectMapper;
 
-    @Value("${mediatype.json}")
+    @Value("${media-type.json}")
     private String mediaTypeJson;
 
     @Override
