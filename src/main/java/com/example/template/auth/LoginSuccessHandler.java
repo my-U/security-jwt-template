@@ -49,7 +49,6 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
         LoginSuccessMemberDto loginSuccessMemberDto = LoginSuccessMemberDto.builder()
                 .accountId(member.getAccountId())
-                .memberName(member.getMemberName())
                 .role(member.getRole())
                 .build();
 
