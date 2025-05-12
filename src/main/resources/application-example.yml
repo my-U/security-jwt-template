@@ -47,3 +47,5 @@ server:
     whitelabel:
       enabled: false  # 기본 Whitelabel 에러 페이지 비활성화
 
+media-type:
+  json: "application/json;charset=UTF-8"
