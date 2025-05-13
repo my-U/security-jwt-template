@@ -68,7 +68,7 @@ public class JwtService {
     /**
      * JWT 토큰에서 사용자 계정 추출
      */
-    public String extractAccountIdFromAccessToken(String token) {
+    public String extractAccountIdFromToken(String token) {
         return JWT.require(algorithm)
                 .build()
                 .verify(token).getClaim(ACCOUNT_CLAIM).asString(); // accountId 추출
@@ -115,13 +115,11 @@ public class JwtService {
         response.addCookie(cookie);
     }
 
-    /**
-     * 토큰에서 AccountId 추출
-     */
-    public String extractAccountId(String token) {
-        return JWT.require(algorithm)
+    public long getRemainingExpiration(String token) {
+        Date expiresAt = JWT.require(algorithm)
                 .build()
                 .verify(token)
-                .getSubject();
+                .getExpiresAt();
+        return expiresAt.getTime() - System.currentTimeMillis();
     }
 }
