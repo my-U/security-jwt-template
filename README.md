@@ -31,7 +31,27 @@ Spring Security + JWT 통합 설정 템플릿 레포지토리입니다.
 
 ---
 
-## 3. 환경 변수 설정 안내 (.env 파일)
+## 3. 📦 사용 기술 스택
+
+### 언어 및 환경
+- Java 21
+- Spring Boot 3.4.3
+- Gradle (Groovy DSL)
+
+### 주요 라이브러리
+| 라이브러리 | 버전 |
+|-----------|------|
+| Auth0 Java JWT | 4.4.0 |
+| SpringDoc OpenAPI (Swagger) | 2.3.0 |
+| MapStruct | 1.5.5.Final |
+| Lombok | 최신 (Spring BOM에 의해 관리) |
+| Spring Security | Spring Boot BOM 기준 |
+| Redis | spring-boot-starter-data-redis |
+| MySQL Connector | spring-boot-starter-jdbc 기준 |
+
+---
+
+## 4. 환경 변수 설정 안내 (.env 파일)
 
 - `.env.common.example`, `.env.local.example`, `.env.prod.example`은 예시 파일입니다.
 - 실행 환경에 따라 `.env` 병합이 필요할 수 있습니다.
@@ -62,7 +82,7 @@ cat .env.common .env.dev > .env
 
 ---
 
-## 4. 🔐 GitHub Actions Secrets 설정 가이드
+## 5. 🔐 GitHub Actions Secrets 설정 가이드
 
 | 이름 | 설명 |
 |------|------|
@@ -83,7 +103,7 @@ base64 .env.common > env_common.b64
 
 ---
 
-## 5. Deploy 설정 안내 (GitHub Actions)
+## 6. Deploy 설정 안내 (GitHub Actions)
 
 | 항목 | 설명                                                            |
 |------|---------------------------------------------------------------|
