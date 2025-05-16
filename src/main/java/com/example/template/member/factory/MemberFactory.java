@@ -3,6 +3,7 @@ package com.example.template.member.factory;
 import com.example.template.member.dto.request.MemberRegisterDto;
 import com.example.template.member.entity.Member;
 import com.example.template.util.enums.Role;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 public class MemberFactory {
 

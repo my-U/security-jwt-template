@@ -23,7 +23,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
-    private final com.example.NPKI.security.JwtService jwtService;
+    private final JwtService jwtService;
     private final ObjectMapper objectMapper;
     private final MemberRepository memberRepository;
 

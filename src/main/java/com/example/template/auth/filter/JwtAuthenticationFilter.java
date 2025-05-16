@@ -1,9 +1,9 @@
 package com.example.template.auth.filter;
 
-import com.example.NPKI.exception.UnauthorizedException;
-import com.example.NPKI.security.CustomUserDetailsService;
-import com.example.NPKI.security.JwtService;
-import com.example.NPKI.util.enums.ErrorResponse;
+import com.example.template.exception.UnauthorizedException;
+import com.example.template.auth.CustomUserDetailsService;
+import com.example.template.auth.JwtService;
+import com.example.template.util.enums.ErrorResponse;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -55,7 +55,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             if (token == null || !jwtService.validateToken(token)) {
                 throw new UnauthorizedException("토큰이 없거나 토큰 검증 실패") {};
             }
-            String accountId = jwtService.extractAccountIdFromAccessToken(token);
+            String accountId = jwtService.extractAccountIdFromToken(token);
 
             if (accountId == null) {
                 throw new AuthenticationException("JWT에서 사용자 ID 추출 실패") {};

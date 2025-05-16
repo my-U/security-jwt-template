@@ -29,7 +29,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler({
             AccessDeniedException.class,
             AuthenticationException.class,
-            com.example.NPKI.exception.UnauthorizedException.class,
+            UnauthorizedException.class,
             IllegalArgumentException.class,
             IllegalStateException.class,
             NoSuchElementException.class,
@@ -46,11 +46,11 @@ public class GlobalExceptionHandler {
             DuplicateKeyException.class,
             NoSuchElementException.class,
             MethodArgumentNotValidException.class,
-            com.example.NPKI.exception.MissingRequestParameterException.class,
-            com.example.NPKI.exception.JwtTokenExpiredException.class,
-            com.example.NPKI.exception.JwtTokenIsNotValidException.class,
-            com.example.NPKI.exception.InvalidPasswordException.class,
-            com.example.NPKI.exception.NoSuchUserException.class
+            MissingRequestParameterException.class,
+            JwtTokenExpiredException.class,
+            JwtTokenIsNotValidException.class,
+            InvalidPasswordException.class,
+            NoSuchUserException.class
     })
     protected ResponseEntity<ErrorResponse> handleSpecificExceptions(Exception ex) {
         log.error("Exception caught: {}", ex.getClass().getSimpleName(), ex);

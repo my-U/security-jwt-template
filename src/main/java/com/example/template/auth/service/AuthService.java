@@ -3,6 +3,12 @@ package com.example.template.auth.service;
 import com.example.template.auth.JwtService;
 import com.example.template.auth.dto.response.TokenResponseDto;
 import com.example.template.exception.UnauthorizedException;
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Duration;
 

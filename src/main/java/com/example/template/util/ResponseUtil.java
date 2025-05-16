@@ -33,7 +33,7 @@ public final class ResponseUtil {
     static {
         EXCEPTION_MAP.put(AccessDeniedException.class, ErrorCode.FORBIDDEN_ERROR);
         EXCEPTION_MAP.put(AuthenticationException.class, ErrorCode.UNAUTHORIZED);
-        EXCEPTION_MAP.put(com.example.NPKI.exception.UnauthorizedException.class, ErrorCode.UNAUTHORIZED);
+        EXCEPTION_MAP.put(UnauthorizedException.class, ErrorCode.UNAUTHORIZED);
         EXCEPTION_MAP.put(IllegalArgumentException.class, ErrorCode.BAD_REQUEST_ERROR);
         EXCEPTION_MAP.put(IllegalStateException.class, ErrorCode.BAD_REQUEST_ERROR);
         EXCEPTION_MAP.put(NoSuchElementException.class, ErrorCode.NOT_FOUND_ERROR);
@@ -51,11 +51,11 @@ public final class ResponseUtil {
         EXCEPTION_MAP.put(DuplicateKeyException.class, ErrorCode.DUPLICATED_ERROR);
         EXCEPTION_MAP.put(NoSuchElementException.class, ErrorCode.NO_SUCH_ELEMENT);
         EXCEPTION_MAP.put(MethodArgumentNotValidException.class, ErrorCode.METHOD_ARGUMENT_NOT_VALID_EXCEPTION);
-        EXCEPTION_MAP.put(com.example.NPKI.exception.JwtTokenExpiredException.class, ErrorCode.JWT_TOKEN_IS_EXPIRED);
-        EXCEPTION_MAP.put(com.example.NPKI.exception.JwtTokenIsNotValidException.class, ErrorCode.JWT_TOKEN_IS_NOT_VALID_EXCEPTION);
-        EXCEPTION_MAP.put(com.example.NPKI.exception.InvalidPasswordException.class, ErrorCode.INVALID_PASSWORD_EXCEPTION);
-        EXCEPTION_MAP.put(com.example.NPKI.exception.NoSuchUserException.class, ErrorCode.NO_SUCH_USER_EXCEPTION);
-        EXCEPTION_MAP.put(com.example.NPKI.exception.MissingRequestParameterException.class, ErrorCode.MISSING_REQUEST_PARAMETER_ERROR);
+        EXCEPTION_MAP.put(JwtTokenExpiredException.class, ErrorCode.JWT_TOKEN_IS_EXPIRED);
+        EXCEPTION_MAP.put(JwtTokenIsNotValidException.class, ErrorCode.JWT_TOKEN_IS_NOT_VALID_EXCEPTION);
+        EXCEPTION_MAP.put(InvalidPasswordException.class, ErrorCode.INVALID_PASSWORD_EXCEPTION);
+        EXCEPTION_MAP.put(NoSuchUserException.class, ErrorCode.NO_SUCH_USER_EXCEPTION);
+        EXCEPTION_MAP.put(MissingRequestParameterException.class, ErrorCode.MISSING_REQUEST_PARAMETER_ERROR);
     }
 
     // 인스턴스화 방지

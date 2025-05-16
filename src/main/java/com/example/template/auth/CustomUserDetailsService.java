@@ -21,6 +21,6 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String accountId) throws UsernameNotFoundException {
         Member member = memberRepository.findByAccountId(accountId)
                 .orElseThrow(() -> new UsernameNotFoundException("Member not found"));
-        return new com.example.NPKI.security.CustomUserDetails(member, Collections.emptyList());
+        return new CustomUserDetails(member, Collections.emptyList());
     }
 }
