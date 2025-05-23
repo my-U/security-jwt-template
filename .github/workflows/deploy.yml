@@ -7,6 +7,7 @@ on:
 
 jobs:
   build:
+    if: false # 비활성화. CI/CD 사용 시 제거
     runs-on: ubuntu-latest
 
     services:
@@ -106,16 +107,16 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd ~/your-project-directory # 프로젝트별 docker-compose.yml 파일을 다운 받을 디렉토리로 수정하세요.
+            cd ~/your-project-directory # 프로젝트별 docker-compose.prod.yml 파일을 다운 받을 디렉토리로 수정하세요.
             
             # docker-compose.yml 다운로드
-            curl -o docker-compose.yml https://raw.githubusercontent.com/your-username/your-repo-name/main/docker-compose.yml  # 🔧 사용자명, 레포명, 브랜치명을 실제 환경에 맞게 수정하세요.
+            curl -o docker-compose.prod.yml https://raw.githubusercontent.com/your-username/your-repo-name/main/docker-compose.prod.yml  # 🔧 사용자명, 레포명, 브랜치명을 실제 환경에 맞게 수정하세요.
             
             # .env 파일 복원
             echo "${{ secrets.ENV_COMMON_FILE }}" | base64 --decode > .env.common
             echo "${{ secrets.ENV_PROD_FILE }}" | base64 --decode > .env.prod
 
-            # .env 파일로 합치기 - docker-compose.yml 파일의 ${VAR} 형식은 .env 파일만 인식하기 때문
+            # .env 파일로 합치기 - docker-compose.prod.yml 파일의 ${VAR} 형식은 .env 파일만 인식하기 때문
             cat .env.prod .env.common > .env
             
             # 최신 이미지 pull + 컨테이너 재시작
