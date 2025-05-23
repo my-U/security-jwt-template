@@ -16,7 +16,7 @@ Spring Security + JWT 통합 설정 템플릿 레포지토리입니다.
 | `/src/main/resources/application-example.yml`        | `spring.application.name`                                                                     | 어플리케이션 이름을 프로젝트에 맞게 수정해야 합니다.                                                              |
 | `/src/main/resources/application-secret-example.yml` | `schema.base`                                                                                 | 사용할 데이터베이스 스키마명을 `.env.common`의 `DATABASE=`에서 설정해야 합니다.                                    |
 | 〃                                                    | `spring.datasource.url`, `username`, `password`                                               | 사용하는 DB 종류(MySQL, PostgreSQL 등)에 따라 주석을 해제하고, 해당 값들은 `.env.dev` 또는 `.env.prod`에서 설정해야 합니다. |
-| `.env.common.example`                                | `DATABASE`                                                                                    | 사용할 데이터베이스 스키마명을 입력해야 합니다.                                                                 |
+| `.env.common.example`                                | `MYSQL_DATABASE`, `POSTGRESQL_DATABASE`, `POSTGRESQL_SCHEMA`                                   | 사용할 데이터베이스명과 스키마명을 입력해야 합니다.                                                               |
 | 〃                                                    | `MYSQL_ROOT_PASSWORD`, `POSTGRES_PASSWORD`                                                    | Docker를 생성할 때 생성할 기본 사용자의 비밀번호를 입력해야 합니다.                                                  |
 | 〃                                                    | `JWT_SECRET_KEY`                                                                              | JWT 서명을 위한 비밀 키를 반드시 입력해야 합니다.                                                             |
 | `.env.dev.example`                                   | `SPRING_DATASOURCE_URL_MYSQL`, `SPRING_DATASOURCE_URL_POSTGRESQL`, `SPRING_DATASOURCE_URL_H2` | URL 내 `example`이라는 DB 이름을 실제 사용하는 DB 이름으로 수정해야 합니다.                                        |
@@ -24,8 +24,8 @@ Spring Security + JWT 통합 설정 템플릿 레포지토리입니다.
 | 〃                                                    | `SPRING_DATASOURCE_USERNAME_POSTGRESQL`, `SPRING_DATASOURCE_PASSWORD_POSTGRESQL`              | 기본(postgres) 계정이 아닌, init.sql에 생성한 사용자명과 비밀번호를 입력해야 합니다.                                   |
 | 〃                                                    | `SPRING_DATASOURCE_USERNAME_H2`, `SPRING_DATASOURCE_PASSWORD_H2`                              | 로컬 H2 DB 사용자명과 비밀번호를 입력해야 합니다.                                                             |
 | `.env.prod.example`                                  | `SPRING_DATASOURCE_URL_MYSQL`, `SPRING_DATASOURCE_URL_POSTGRESQL`                             | URL 내 `example`이라는 DB 이름을 실제 사용하는 DB 이름으로 수정해야 합니다.                                        |
-| 〃                                                    | `SPRING_DATASOURCE_USERNAME_MYSQL`, `SPRING_DATASOURCE_PASSWORD_MYSQL`, `MYSQL_ROOT_PASSWORD` | 기본(root) 계정이 아닌, init.sql에 생성한 운영 MySQL 사용자명, 비밀번호를 반드시 입력해야 합니다.                 |
-| 〃                                                    | `SPRING_DATASOURCE_USERNAME_POSTGRESQL`, `SPRING_DATASOURCE_PASSWORD_POSTGRESQL`              | 기본(postgres) 계정이 아닌, init.sql에 생성한 운영 PostgreSQL 사용자명과 비밀번호를 입력해야 합니다.                                                        |
+| 〃                                                    | `SPRING_DATASOURCE_USERNAME_MYSQL`, `SPRING_DATASOURCE_PASSWORD_MYSQL`, `MYSQL_ROOT_PASSWORD` | 기본(root) 계정이 아닌, init.sql에 생성한 운영 MySQL 사용자명, 비밀번호를 반드시 입력해야 합니다.                          |
+| 〃                                                    | `SPRING_DATASOURCE_USERNAME_POSTGRESQL`, `SPRING_DATASOURCE_PASSWORD_POSTGRESQL`              | 기본(postgres) 계정이 아닌, init.sql에 생성한 운영 PostgreSQL 사용자명과 비밀번호를 입력해야 합니다.                     |
 
 
 
@@ -36,24 +36,24 @@ Spring Security + JWT 통합 설정 템플릿 레포지토리입니다.
 ### 언어 및 환경
 - Java 21
 - Spring Boot 3.4.3
-- Gradle (Groovy DSL)
+- Gradle 8.6
 
 ### 주요 라이브러리
-| 라이브러리 | 버전 |
-|-----------|------|
-| Auth0 Java JWT | 4.4.0 |
-| SpringDoc OpenAPI (Swagger) | 2.3.0 |
-| MapStruct | 1.5.5.Final |
-| Lombok | 최신 (Spring BOM에 의해 관리) |
-| Spring Security | Spring Boot BOM 기준 |
+| 라이브러리 | 버전                            |
+|-----------|-------------------------------|
+| Auth0 Java JWT | 4.4.0                         |
+| SpringDoc OpenAPI (Swagger) | 2.3.0                         |
+| Lombok | 최신 (Spring BOM에 의해 관리)        |
+| Spring Security | Spring Boot BOM 기준            |
 | Redis | spring-boot-starter-data-redis |
-| MySQL Connector | spring-boot-starter-jdbc 기준 |
+| MySQL Connector | spring-boot-starter-jdbc 기준   |
+| PostgreSQL Connector | 42.7.3                              |
 
 ---
 
 ## 4. 환경 변수 설정 안내 (.env 파일)
 
-- `.env.common.example`, `.env.local.example`, `.env.prod.example`은 예시 파일입니다.
+- `.env.common.example`, `.env.dev.example`, `.env.prod.example`은 예시 파일입니다.
 - 실행 환경에 따라 `.env` 병합이 필요할 수 있습니다.
 
 ### 실행 환경별 .env 동작 방식
@@ -61,14 +61,14 @@ Spring Security + JWT 통합 설정 템플릿 레포지토리입니다.
 | 환경 | 자동 로드 여부 | 설명                                                            |
 |------|----------------|---------------------------------------------------------------|
 | **IntelliJ (Spring Boot)** | ❌ 수동 등록 필요 | Run 설정에서 `.env` 지정                                            |
-| **Vite / Node.js** | ✅ 자동 로드 | `.env`, `.env.local`, `.env.production` 자동 인식                 |
+| **Vite / Node.js** | ✅ 자동 로드 | `.env`, `.env.dev`, `.env.production` 자동 인식                   |
 | **Docker Compose** | ✅ `.env`만 자동 | Docker 내부에서 환경 변수가 사용될 경우 `.env.common` 등은 `env_file:`로 명시 필요 |
 
 ---
 
 ### 사용 권장 방식
 
-1. **Vite** 등의 자동 로드 환경에서는 `.env` 또는 `.env.local`, `.env.prod`를 파일명에 맞게 사용하세요.
+1. **Vite** 등의 자동 로드 환경에서는 `.env` 또는 `.env.dev`, `.env.prod`를 파일명에 맞게 사용하세요.
 2. **Docker** 등의 환경에서는 .env 파일만 자동으로 로드됩니다.  
    **.env.dev, .env.prod, .env.common** 등의 파일은 자동으로 로드되지 않으므로,
    **docker-compose** 파일에서 환경 변수가 사용될 경우 실행 전에 수동으로 .env 파일로 병합해야 합니다.  
